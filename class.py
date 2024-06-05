@@ -75,22 +75,31 @@ class Account:
 
 #Method to enforce a minimum balance requirement.
 
-
-
+    def set_minimum_balance(self, minimum_balance):
+        """
+        Sets a minimum balance requirement for the account.
+        """
+        self.minimum_balance = minimum_balance
 
 
 # Method to transfer funds from one account to another.
         
+    def transfer_funds(self, recipient, amount):
+        """
+        Transfers funds from this account to another account.
+        """
+        if self.balance >= amount:
+            self.balance -= amount
+            recipient.balance += amount
+            print(f"Transferred ${amount:.2f} to {recipient.owner}.")
+        else:
+            print("Insufficient balance for transfer.")
 
-
-
-        
 
 # Method to close the account and perform necessary cleanup.        
     def close_account(self):
         if self.is_open:
             self.is_open = False
             print(f"Account {self.account_number} is now closed.")
-            # Perform any additional cleanup (e.g., log closure date, transfer balance, etc.)
         else:
             print("Account is already closed.")
